@@ -1,0 +1,252 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+  margin: 20px;
+  padding: 0;
+  box-sizing: border-box; /* Asegura que el padding y el border no afecten el tamaño total de los elementos */
+  background-color: #f4f4f4;
+}
+.ruteo {
+  font-size: 15px;
+  background-color: #FFC8DD;
+  color: #ffffff;
+  border-radius: 40px;
+  padding: 5px 20px;
+  border: none;
+  cursor: pointer; /*Pone el cursor de la manita*/
+  display: block;
+  font-family: 'Ubuntu', sans-serif;
+  transition: 0.3s ease-in-out;
+}
+.ruteo:hover {
+  background-color: #838FDF; 
+}
+
+
+.top-pag{
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  margin-bottom: 40px;
+  color: #f4f4f4;
+  
+}
+img{
+  width: 370px;   
+  height: auto;   
+}
+
+
+header{
+  margin: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: #838FDF;
+}
+h2{
+  color: #2A428E;;
+}
+
+
+/*-----------------------------------------------------------------------------------------------------*/
+
+
+
+/* Contenedor principal */
+.calculadora-container {
+  display: flex;
+  flex-direction: row-reverse; /* Invierte el orden de las columnas */
+  justify-content: space-between; /* Espaciado entre columnas */
+  gap: 20px; /* Espacio entre columnas */
+}
+
+/* Columna izquierda (información) */
+.izquierda {
+  flex: 75%; /* La columna izquierda ocupa el 75% */
+  background-color: #f4f4f4; 
+  padding-left: 50px;
+  border-radius: 10px;
+}
+
+.izquierda p, li{
+  color: #838FDF;
+}
+.izquierda h2, h3, h4, h5, strong{
+  color: #2A428E;
+}
+#text-final{
+  text-align: center;
+}
+
+/* Columna derecha (formulario y resultados) */
+.derecha {
+  flex: 25%; /* La columna de la calculadora ocupa el 25% */
+  background-color: #FFC8DD; 
+  color: #2A428E;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Formulario */
+.formulario {
+  padding: 20px;
+  margin: 0 auto; /* Centrado automático */
+  max-width: 90%; /* Reducir el ancho del formulario */
+}
+
+/* Inputs y Select del formulario */
+input, select {
+  width: 100%; /* Ocupar todo el ancho disponible */
+  padding: 4px;
+  margin: 1px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Para que padding no afecte el tamaño total */
+}
+
+/* Asegurar que el select tenga el mismo ancho que los inputs */
+select {
+  background-color: white;
+}
+
+/* Título del formulario */
+#datosPersonales {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+/* Botón calcular alineado a la izquierda */
+#btnCalcular {
+  background-color: #2A428E; /*Color de fondo*/
+  color: white; /*Color de las letras*/
+  padding: 10px 20px; /*Espacio del boton arriba/lados*/
+  border-radius: 5px;
+  border: none;
+  cursor: pointer; /*Pone el cursor de la manita*/
+  display: block;
+  margin-left: auto; /*Alinea el botón a la derecha de los input/select*/
+  font-family: 'Ubuntu', sans-serif;
+  transition: 0.3s ease-in-out;;
+}
+#btnCalcular:hover {
+  background-color: #838FDF; 
+}
+
+
+
+/*-----------------------------------------------------------------------------------------------------*/
+/* PARTE B: RESULTADOS */
+.parteB{
+  text-align: center;
+  color: #838FDF;
+}
+
+#titulo{
+  text-align: center;
+  flex: 100%;
+  background-color: #FFC8DD;
+  color: #2A428E;
+  padding: 20px 30px; 
+}
+
+/*Fila resultados 1*/
+.resultados-container-01 {
+  display: flex;
+  justify-content: space-between; /* Espaciado entre columnas */
+  gap: 20px; /* Espacio entre columnas */
+}
+
+.TMB-resultado{
+  flex: 33%;
+}
+.aclaraciones{
+  color: #838FDF;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s;
+  text-decoration: underline;
+}
+.aclaraciones:hover {
+  color: #0056b3;
+}
+
+.IMC-resultado{
+  flex: 33%;
+}
+.Peso-resultado{
+  flex: 33%;
+}
+
+#linea{
+  color: #FFC8DD;
+  margin: 40px;
+}
+
+/*Fila resultados 2*/
+.resultados-container-02 {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: auto;
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.Macros-resultado{
+  flex: 1; /* Hace que ambos elementos ocupen el mismo espacio */
+  min-width: 50%; /* Asegura que cada uno ocupe la mitad */
+  text-align: center; /* Centra el contenido */
+}
+.irAentreno{
+  flex: 1; /* Hace que ambos elementos ocupen el mismo espacio */
+  min-width: 50%; /* Asegura que cada uno ocupe la mitad */
+  text-align: center; /* Centra el contenido */
+}
+
+/*Fila botones*/
+.resultados-container-03{
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  gap: 80px; /* Espacio entre los botones */
+  margin-top: 30px;
+  text-align: center; /* Asegura el centrado del contenido */
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+}
+
+button{
+  background-color: #FFC8DD; /*Color de fondo*/
+  color: #2A428E; /*Color de las letras*/
+  padding: 10px 20px; /*Espacio del boton arriba/lados*/
+  border-radius: 5px;
+  border: none;
+  cursor: pointer; /*Pone el cursor de la manita*/
+  font-family: 'Ubuntu', sans-serif;
+  transition: 0.3s ease-in-out;;
+}
+button:hover {
+  background-color: #E380C2; 
+}
+/*-----------------------------------------------------------------------------------------------------*/
+
+
+.Copyright{
+  font-size: 12px;
+  color: #8E8282;
+  text-align: center;
+}
+
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .calculadora-container {
+    flex-direction: column; /* Apila las columnas en dispositivos móviles */
+  }
+
+  .izquierda, .derecha {
+    flex: 100%; /* Ambas ocupan el 100% en móviles */
+  }
+
+  .btnCalcular {
+    width: 100%; /* Que el botón ocupe todo el ancho en móviles */
+    text-align: center;
+  }
+}

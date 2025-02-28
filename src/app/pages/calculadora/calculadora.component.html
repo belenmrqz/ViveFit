@@ -1,0 +1,170 @@
+<body>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet"> <!--Link para obtener la fuente de google font-->
+
+    <div class="top-pag">
+        <div class="izq"><button class="ruteo"  (click)="irAPrincipal()">Volver a Inicio</button></div>
+        <div class="logo"><img src="https://i.imgur.com/tRqhDBw.png"></div> <!--Imagen subida a la red-->
+        <div class="drch"><button class="ruteo" (click)="irAEjercicios()">Crea tu rutina</button></div>
+    </div>
+
+
+    <!-- PARTE A: INFORMACIÓN (aparece por defecto y se oculta al calcular las tasas)-->
+    <header *ngIf="!mostrarResultados"> <!--Cabecera: información-->
+        <h2>¿Por qué es importante conocer tu TMB e IMC?</h2>
+
+        <p>✅ La <strong>TMB</strong> te indica cuántas calorías necesita tu cuerpo cada día para funcionar
+            correctamente.
+            Es el punto de partida para crear un plan de alimentación personalizado, que te ayudará a perder peso, ganar
+            músculo o mantener tu energía al máximo.</p>
+        <p>✅ El <strong>IMC</strong>, por su parte, es una medida que evalúa si tu peso está en un rango saludable en
+            relación con tu
+            altura. Esto es clave para identificar
+            posibles riesgos para tu salud y para fijar objetivos claros y realistas.</p>
+
+        <h2>¡Vamos a indagar un poco más en ti!</h2>
+        <p>Para realizar cálculos básicos y con un margen de error considerable, solo necesitaríamos tu peso, altura y
+            edad. Sin embargo, si lo que buscas son resultados realmente efectivos, es necesario profundizar un poco
+            más.</p>
+        <p>Cada cuerpo es único, y aunque la <strong>TMB</strong> y el <strong>IMC</strong> son excelentes puntos de
+            partida, un cálculo más preciso puede hacer una gran diferencia en tu camino hacia una salud óptima.</p>
+
+    </header>
+
+    
+    <div class="parteA" *ngIf="!mostrarResultados">
+
+        <div class="calculadora-container">
+
+            <div class="columna derecha"> <!--Columna de la derecha: Formulario-->
+                <div class="formulario">
+
+                    <form [formGroup]="calculadoraForm" (ngSubmit)="calcularTodo()">
+                        <h3 id="datosPersonales">Datos personales</h3>
+
+                        <label>Peso (kg):</label><br>
+                        <input type="number" formControlName="peso" required /> <br> <br>
+
+                        <label>Altura (cm):</label><br>
+                        <input type="number" formControlName="altura" required /> <br> <br>
+
+                        <label>Género: </label><br>
+                        <select formControlName="genero">
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                        </select> <br> <br>
+
+                        <label>Edad (años): </label><br>
+                        <input type="number" formControlName="edad" required /> <br> <br>
+
+                        <label>Objetivo: </label><br>
+                        <select formControlName="objetivo">
+                            <option value="saludable">Dieta saludable</option>
+                            <option value="entrenar">Dieta para entrenar</option>
+                        </select> <br> <br>
+
+                        <label>Horas de sueño diarias: </label>
+                        <input type="number" formControlName="horasSuenio" required /> <br> <br>
+
+                        <label>Horas activas diarias: </label>
+                        <input type="number" formControlName="horasActivas" required /> <br> <br>
+
+                    </form>
+
+                    <button id="btnCalcular" (click)="calcularTodo()">Calcular </button>
+
+                </div>
+            </div>
+
+
+            <div class="columa izquierda"> <!--Columna de la izquierda: Información-->
+
+                <h3>✨ El detalle lo es todo:</h3>
+                <p>Ajustar tus cálculos permite personalizar tus resultados y maximizar tu progreso, por eso necesitamos
+                    algunos
+                    datos más sobre ti:</p>
+
+                <ul>
+                    <li><strong>Género:</strong> Hombres y mujeres tienen diferentes composiciones corporales. Para
+                        calcular
+                        la
+                        TMB de manera precisa, necesitamos saber si eres hombre o mujer, ya que esto afecta cuántas
+                        calorías
+                        quemas en reposo.</li><br>
+                    <li><strong>Horas de sueño:</strong> El sueño es más importante de lo que parece. Mientras duermes,
+                        tu
+                        cuerpo sigue trabajando: reparando células, manteniendo el sistema inmunológico y regulando las
+                        hormonas. Por tanto, el sueño influye en cómo tu cuerpo maneja las calorías a largo plazo.</li>
+                    <br>
+                    <li><strong>Horas de actividad:</strong> La actividad física es uno de los factores más importantes
+                        al
+                        calcular las calorías que quemas durante el día. Necesitamos tener en cuenta las horas que pasas
+                        haciendo ejercicio o realizando actividades físicas. Si eres más activo, necesitarás más
+                        calorías
+                        para
+                        mantener tu energía.</li><br>
+                </ul>
+
+                <h3>🎯 Ahora obtendremos resultados reales y efectivos</h3>
+                <p>Cada ajuste te acerca un paso más a tu mejor versión. Estás a punto de obtener los cálculos más
+                    precisos
+                    para alcanzar tus objetivos.</p><br>
+
+                <p id="text-final">¿Listo para llevar tu salud al siguiente nivel? 🌱<br>
+                    Es momento de ir más allá y descubrir cómo alcanzar tu máximo potencial.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PARTE B: SE OCULTA LA PARTE A Y SE MIUENTRAN LOS RESULTADOS-->
+    <div class="parteB" *ngIf="mostrarResultados">
+        <h1 id="titulo"> ¡ Tus resultados !</h1>
+
+        <div class="resultados-container-01">
+            <div class="TMB-resultado">
+                <h3>Resultado TMB:</h3>
+                <p>Calorías diarias necesarias: <strong>{{ resultadoTMB }}</strong> kcal/día</p>
+                <p>Calorías diarias con actividad: <strong>{{ kcalDiaActivo }}</strong> kcal/día</p>
+                <p (click)="caloriasAclaracion()" class="aclaraciones">explicacion</p>
+            </div>
+            <div class="IMC-resultado">
+                <h3>Resultado IMC:</h3>
+                <p>Tu IMC es: <strong>{{ resultadoIMC }}</strong></p>
+                <p>Tu IMC segun la OMS es {{ imcOMS }}</p>
+            </div>
+            <div class="Peso-resultado">
+                <h3>Porcentaje corporal:</h3>
+                <p>Tienes un <strong>{{ porcentGrasa }}%</strong> de grasa en el cuerpo</p>
+                <p>Tienes un <strong>{{ porcentMusculo }}%</strong> de musculo en el cuerpo</p>
+            </div>
+
+        </div>
+
+        <h3 id="linea">
+            ...............................................................................................................................................................................................................
+        </h3>
+    </div>
+
+    <div class="parteB" *ngIf="mostrarResultados">
+        <div class="resultados-container-02">
+            <div class="Macros-resultado">
+                <h3>Macronutrientes</h3>
+                <p>Comsumo de lipidos: <strong>{{ lipidos }}</strong> gramos al día</p>
+                <p>Comsumo de hidratos: <strong>{{ hidratos }} </strong> gramos al día</p>
+                <p>Comsumo de proteina: <strong>{{ proteina }}</strong> gramos al día</p>
+            </div>
+            <div class="irAentreno">
+                <h3><strong>¡Ve un paso mas allá!</strong></h3>
+                <p>Acompaña tu alimentación con una <br> buena rutina de entreamiento</p>
+                <button (click)="irAEjercicios()"><strong>Crea tu rutina ya</strong></button>
+            </div>
+        </div>
+
+        <div class="resultados-container-03">
+            <button (click)="reiniciarFormulario()"><strong>Empezar de nuevo</strong></button>
+            <button (click)="editarFormulario()"><strong>Editar datos</strong></button>
+        </div>
+        
+    </div>
+    <div><p class="Copyright">Copyright 2025 ViveFit</p></div>
+
+</body>

@@ -1,0 +1,119 @@
+<body>
+
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet"> <!--Link para obtener la fuente de google font-->
+
+
+    <div class="top-pag">
+            <div class="izq"><button class="ruteo"  (click)="irAPrincipal()">Volver a Inicio</button></div>
+            <div class="logo"><img src="https://i.imgur.com/tRqhDBw.png"></div> <!--Imagen subida a la red-->
+            <div class="drch"><button class="ruteo" (click)="irACalculadora()">Mide tu TMB e IMC</button></div>
+    </div>    
+
+
+    <!-- PARTE A: INFORMACIÓN (aparece por defecto y se oculta al calcular las tasas)-->
+    <div class="parteA" *ngIf="!rutinaGenerada">
+
+        <h1>¡Establece tus objetivos!</h1>
+        <p>¿Cuál de todos estos entrenamientos se asemeja más a tu objetivo de entrenamiento?<br>
+            Escoge el tuyo y marca cuantos días a la semana estás disponible</p>
+
+        <div class="conjunto"> <!--Tipos de entrenamiento-->
+            <div class="contenedor">
+                <div class="columna columnaHipertrofia">
+                    <h3>Hipertrofia💪</h3>
+                    <p>¿Buscas tener un cuerpo más musculoso y definido?<br> Este tipo de entrenamiento te ayudará a
+                        aumentar tu masa muscular, tonificar y mejorar tu estética.</p>
+                </div>
+                <div class="columna columnaPerder">
+                    <h3>Perder Peso🤸</h3>
+                    <p>¿Estás listo para un entrenamiento intenso que acelere la quema de grasa? con este entrenamiento
+                        conseguirás perder grasa corporal y mejorar tu figura.</p>
+                </div>
+            </div>
+            <div class="contenedor">
+                <div class="columna columnaFuerza">
+                    <h3>Fuerza 🏋️</h3>
+                    <p>Este entrenamiento es ideal para aquellos que quieren aumentar su capacidad para levantar pesos
+                        pesados, mejorar su rendimiento y sentirse mucho más fuerte.</p>
+                </div>
+                <div class="columna columnaForma">
+                    <h3>Mantenerse en Forma🏃</h3>
+                    <p>Si solo quieres mantenerte en forma sin ningún objetivo detallado, este es tu entrenamiento
+                        perfecto.
+                        Te mandrendras activo, mejorarás tu resistencia y tonificaras el cuerpo de manera equilibrada.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="formulario"> <!--Formulario-->
+            <form [formGroup]="ejerciciosForm" (ngSubmit)="crearRutina()">
+
+                <label for="tipoRutina">Elige tu rutina</label>
+                <select id="tipoRutina" formControlName="tipoRutina">
+                    <option value="hipertrofia">Hipertrofia</option>
+                    <option value="perderPeso">Perder peso</option>
+                    <option value="fuerza">Fuerza</option>
+                    <option value="enForma">Mantenerse en forma</option>
+                </select>
+
+                <label for="diasEntrenamiento">¿Cuántos días a la semana entrenarás?</label>
+                <select id="diasEntrenamiento" formControlName="diasEntrenamiento">
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <button type="submit">Generar rutina</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Mostrar rutina generada -------------------------------------------------------------------------------->
+    <!-- PARTE B: SE OCULTA LA PARTE A Y SE MIUENTRAN LOS RESULTADOS-->
+    <div class="resultados" *ngIf="rutinaGenerada">
+        <h1 id="titulo">Rutina {{rutinaGenerada.nombre}}</h1>
+        <div class="contenedor01">
+            <div class="que-es">
+                <h3>¿Qué es?</h3>
+                <p>{{descripcionRutina.queEs}}</p>
+            </div>
+            <div class="como-funciona">
+                <h3>¿Cómo funciona?</h3>
+                <p>{{descripcionRutina.comoFunciona}}</p>
+            </div>
+        </div>
+        <h3 id="id01">A tener en cuenta:</h3>
+        <div class="contenedor02">
+            <div class="a">
+                <p>La distribucion semanal será {{ rutinaGenerada.tipo }}</p>
+            </div>
+            <div class="b">
+                <p>Cada sesión se realizarán {{rutinaGenerada.ejercicios}}, {{rutinaGenerada.distribucion}}</p>
+
+            </div>
+            <div class="c">
+                <p>En cada ejercicio se realizarán {{descripcionRutina.seriesRepes}}</p>
+            </div>
+        </div>
+
+        <p (click)="compuestosAislados()" class="dudas">¿qué son los ejercicios compuestos y aislados?</p>
+
+        <div class="botones-finales">
+            <div><button (click)="editarFormulario()">Editar mis datos</button></div>
+            <div><button (click)="resetearFormulario()">Volver a empezar</button></div>
+        </div>
+
+       
+
+
+    </div>
+
+
+
+    <div>
+        <p class="Copyright">Copyright 2025 ViveFit</p>
+    </div>
+
+</body>
